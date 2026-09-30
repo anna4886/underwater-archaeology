@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>成為水下考古員</title>
+
+  <style>
+
+    @font-face {
+      font-family: "Huninn";
+      src: url("./fonts/JF-OPENHUNINN-1.0.TTF") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+
+      font-family:
+        "Huninn",
+        "Microsoft JhengHei",
+        sans-serif;
+
+      color: #16425c;
+
+      background-image:
+        linear-gradient(
+          rgba(0, 54, 92, 0.10),
+          rgba(0, 39, 72, 0.34)
+        ),
+        url("./images/background.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      min-height: 100vh;
+    }
+
+
+    button,
+    textarea,
+    input,
+    select {
+      font-family:
+        "Huninn",
+        "Microsoft JhengHei",
+        sans-serif;
+    }
+
+
+    /* =========================
+       主容器
+    ========================= */
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+
+      padding:
+        28px
+        0
+        100px;
+    }
+
+
+    /* =========================
+       標題
+    ========================= */
+
+    .title-area {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+
+    .title-image {
+      width: min(780px, 95%);
+      height: auto;
+      display: inline-block;
+    }
+
+
+    .subtitle {
+      text-align: center;
+
+      font-size: 20px;
+      font-weight: 600;
+
+      color: white;
+
+      margin:
+        0
+        0
+        30px;
+
+      text-shadow:
+        0
+        2px
+        8px
+        rgba(0, 0, 0, 0.35);
+    }
+
+
+    /* =========================
+       區塊標題
+    ========================= */
+
+    .section-title {
+      color: white;
+
+      font-size: 29px;
+
+      margin:
+        42px
+        0
+        18px;
+
+      text-shadow:
+        0
+        2px
+        8px
+        rgba(0, 0, 0, 0.35);
+    }
+
+
+    /* =========================
+       是非題
+    ========================= */
+
+    .truefalse-panel {
+      background:
+        rgba(236, 249, 255, 0.94);
+
+      border:
+        2px solid rgba(112, 212, 235, 0.78);
+
+      border-radius: 24px;
+
+      padding:
+        18px
+        26px;
+
+      box-shadow:
+        0
+        8px
+        24px
+        rgba(0, 48, 78, 0.18);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+
+    .tf-question {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+
+      padding:
+        14px
+        0;
+
+      border-bottom:
+        1px solid rgba(66, 145, 180, 0.16);
+    }
+
+
+    .tf-question:last-child {
+      border-bottom: none;
+    }
+
+
+    .tf-buttons {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+
+    .tf-text {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       一般答案按鈕
+    ========================= */
+
+    .answer-button {
+      min-width: 58px;
+      min-height: 54px;
+
+      padding:
+        10px
+        16px;
+
+      border:
+        3px solid #1693c5;
+
+      border-radius: 14px;
+
+      background:
+        rgba(255, 255, 255, 0.90);
+
+      color: #0876a8;
+
+      font-size: 22px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+
+    .answer-button:hover {
+      transform: translateY(-2px);
+    }
+
+
+    .answer-button.selected {
+      background: #168fc1;
+      color: white;
+
+      box-shadow:
+        0
+        5px
+        14px
+        rgba(0, 80, 120, 0.22);
+    }
+
+
+    /* =========================
+       選擇題
+    ========================= */
+
+    .choice-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+
+    .choice-card {
+      background:
+        rgba(236, 249, 255, 0.94);
+
+      border:
+        2px solid rgba(112, 212, 235, 0.78);
+
+      border-radius: 20px;
+
+      padding: 20px;
+
+      box-shadow:
+        0
+        8px
+        24px
+        rgba(0, 48, 78, 0.18);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+
+    .choice-card p {
+      margin-top: 0;
+
+      min-height: 62px;
+
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+
+    .choice-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+
+    .choice-button {
+      width: 100%;
+
+      min-height: 48px;
+
+      padding:
+        11px
+        14px;
+
+      text-align: left;
+
+      font-size: 16px;
+      font-weight: 500;
+
+      border-width: 2px;
+    }
+
+
+    .choice-button strong {
+      display: inline-block;
+      width: 28px;
+      font-size: 18px;
+    }
+
+
+    /* =========================
+       漏答
+    ========================= */
+
+    .unanswered {
+      border:
+        3px solid #ffa45d !important;
+
+      animation:
+        warningPulse 0.6s ease;
+    }
+
+
+    @keyframes warningPulse {
+
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.01);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* =========================
+       我的發現
+    ========================= */
+
+    .discovery-layout {
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns:
+        280px
+        1fr;
+
+      align-items: end;
+
+      gap: 20px;
+
+      min-height: 330px;
+    }
+
+
+    .character-area {
+      position: relative;
+      min-height: 330px;
+    }
+
+
+    .character {
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 260px;
+      max-width: 100%;
+
+      height: auto;
+
+      z-index: 5;
+
+      pointer-events: none;
+
+      filter:
+        drop-shadow(
+          0
+          6px
+          12px
+          rgba(0, 0, 0, 0.20)
+        );
+    }
+
+
+    .discovery-box {
+      background:
+        rgba(236, 249, 255, 0.95);
+
+      border:
+        2px solid rgba(112, 212, 235, 0.80);
+
+      border-radius: 22px;
+
+      padding: 22px;
+
+      box-shadow:
+        0
+        8px
+        24px
+        rgba(0, 48, 78, 0.18);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+
+    .discovery-title {
+      color: #075b8f;
+
+      font-size: 24px;
+      font-weight: 700;
+
+      margin-bottom: 16px;
+    }
+
+
+    .discovery-title span {
+      color: #315f77;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+
+    #discoveryInput {
+      width: 100%;
+
+      min-height: 210px;
+
+      resize: none;
+
+      padding: 18px;
+
+      border:
+        1px solid rgba(20, 130, 175, 0.20);
+
+      border-radius: 14px;
+
+      outline: none;
+
+      background:
+        rgba(255, 255, 255, 0.96);
+
+      color: #17405a;
+
+      font-family:
+        "Huninn",
+        "Microsoft JhengHei",
+        sans-serif;
+
+      font-size: 19px;
+
+      line-height: 1.8;
+    }
+
+
+    #discoveryInput:focus {
+      border:
+        2px solid #168fc1;
+    }
+
+
+    /* =========================
+       完成按鈕
+    ========================= */
+
+    .finish-area {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+
+    .finish-button {
+      padding:
+        17px
+        48px;
+
+      border: none;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0870a3,
+          #0b94c4
+        );
+
+      color: white;
+
+      font-size: 23px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0
+        8px
+        20px
+        rgba(0, 68, 105, 0.28);
+    }
+
+
+    .finish-button:hover {
+      transform: translateY(-2px);
+    }
+
+
+    #message {
+      min-height: 30px;
+
+      margin-top: 18px;
+
+      color: #fff1cf;
+
+      font-size: 21px;
+      font-weight: 700;
+
+      text-shadow:
+        0
+        2px
+        6px
+        rgba(0, 0, 0, 0.45);
+    }
+
+
+    /* =========================
+       結果區
+    ========================= */
+
+    #result {
+      display: none;
+
+      margin-top: 40px;
+
+      padding: 30px;
+
+      background:
+        rgba(246, 253, 255, 0.97);
+
+      border:
+        2px solid rgba(89, 198, 227, 0.80);
+
+      border-radius: 24px;
+
+      box-shadow:
+        0
+        10px
+        28px
+        rgba(0, 38, 62, 0.20);
+    }
+
+
+    #result h2 {
+      margin-top: 0;
+
+      color: #075b8f;
+
+      font-size: 34px;
+    }
+
+
+    .score {
+      margin:
+        18px
+        0
+        28px;
+
+      color: #168ac2;
+
+      font-size: 44px;
+      font-weight: 800;
+    }
+
+
+    .result-item {
+      padding:
+        18px
+        0;
+
+      border-bottom:
+        1px solid #d7ebf3;
+    }
+
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+
+    .result-item p {
+      line-height: 1.65;
+    }
+
+
+    .correct {
+      color: #18805d;
+      font-weight: 700;
+    }
+
+
+    .wrong {
+      color: #d45d48;
+      font-weight: 700;
+    }
+
+
+    .reset-button {
+      margin-top: 26px;
+
+      padding:
+        15px
+        32px;
+
+      border:
+        2px solid #138dbd;
+
+      border-radius: 17px;
+
+      background:
+        #dff6fc;
+
+      color: #075b8f;
+
+      font-size: 20px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       響應式
+    ========================= */
+
+    @media (max-width: 1000px) {
+
+      .title-image {
+        width: min(700px, 96%);
+      }
+
+
+      .choice-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .choice-card p {
+        min-height: auto;
+      }
+
+
+      .discovery-layout {
+        grid-template-columns:
+          220px
+          1fr;
+      }
+
+
+      .character {
+        width: 210px;
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .container {
+        width: 94%;
+      }
+
+
+      .title-image {
+        width: 96%;
+      }
+
+
+      .tf-question {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+
+      .section-title {
+        font-size: 24px;
+      }
+
+
+      .discovery-layout {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .character-area {
+        min-height: 220px;
+      }
+
+
+      .character {
+        position: relative;
+
+        display: block;
+
+        margin: 0 auto;
+
+        width: 180px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="container">
+
+
+    <div class="title-area">
+
+      <img
+        src="./images/title.png"
+        class="title-image"
+        alt="成為水下考古員"
+      >
+
+    </div>
+
+
+    <p class="subtitle">
+      完成是非題與選擇題，一起成為水下考古員吧！
+    </p>
+
+
+
+    <h2 class="section-title">
+      01｜真假情報站
+    </h2>
+
+
+    <div class="truefalse-panel">
+
+
+      <div
+        class="tf-question"
+        id="box-q1"
+      >
+
+        <div class="tf-buttons">
+
+          <button
+            class="answer-button"
+            data-question="q1"
+            data-answer="X"
+            onclick="selectAnswer(this)"
+          >
+            X
+          </button>
+
+          <button
+            class="answer-button"
+            data-question="q1"
+            data-answer="O"
+            onclick="selectAnswer(this)"
+          >
+            O
+          </button>
+
+        </div>
+
+
+        <div class="tf-text">
+          1. 參觀博卡喇號展覽可以幫助我們認識臺灣的海洋文化與歷史。
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="tf-question"
+        id="box-q2"
+      >
+
+        <div class="tf-buttons">
+
+          <button
+            class="answer-button"
+            data-question="q2"
+            data-answer="X"
+            onclick="selectAnswer(this)"
+          >
+            X
+          </button>
+
+          <button
+            class="answer-button"
+            data-question="q2"
+            data-answer="O"
+            onclick="selectAnswer(this)"
+          >
+            O
+          </button>
+
+        </div>
+
+
+        <div class="tf-text">
+          2. 水下考古需要潛水、測量、拍照等專業技術。
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="tf-question"
+        id="box-q3"
+      >
+
+        <div class="tf-buttons">
+
+          <button
+            class="answer-button"
+            data-question="q3"
+            data-answer="X"
+            onclick="selectAnswer(this)"
+          >
+            X
+          </button>
+
+          <button
+            class="answer-button"
+            data-question="q3"
+            data-answer="O"
+            onclick="selectAnswer(this)"
+          >
+            O
+          </button>
+
+        </div>
+
+
+        <div class="tf-text">
+          3. 看到海底文物時，可以自行撿拾帶回家紀念。
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="tf-question"
+        id="box-q4"
+      >
+
+        <div class="tf-buttons">
+
+          <button
+            class="answer-button"
+            data-question="q4"
+            data-answer="X"
+            onclick="selectAnswer(this)"
+          >
+            X
+          </button>
+
+          <button
+            class="answer-button"
+            data-question="q4"
+            data-answer="O"
+            onclick="selectAnswer(this)"
+          >
+            O
+          </button>
+
+        </div>
+
+
+        <div class="tf-text">
+          4. 水下文化資產具有歷史、文化或考古價值，因此需要妥善保存。
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <h2 class="section-title">
+      02｜海底知識挑戰
+    </h2>
+
+
+    <div class="choice-grid">
+
+
+      <div
+        class="choice-card"
+        id="box-q5"
+      >
+
+        <p>
+          1. 發現沉船遺址時，考古人員通常會先做什麼？
+        </p>
+
+
+        <div class="choice-group">
+
+          <button
+            class="answer-button choice-button"
+            data-question="q5"
+            data-answer="A"
+            onclick="selectAnswer(this)"
+          >
+            <strong>A</strong>
+            立即全部打撈
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q5"
+            data-answer="B"
+            onclick="selectAnswer(this)"
+          >
+            <strong>B</strong>
+            調查、測量與記錄現場
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q5"
+            data-answer="C"
+            onclick="selectAnswer(this)"
+          >
+            <strong>C</strong>
+            將文物帶回家研究
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q5"
+            data-answer="D"
+            onclick="selectAnswer(this)"
+          >
+            <strong>D</strong>
+            封閉整片海域
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="choice-card"
+        id="box-q6"
+      >
+
+        <p>
+          2. 水下文化資產可以幫助我們了解什麼？
+        </p>
+
+
+        <div class="choice-group">
+
+          <button
+            class="answer-button choice-button"
+            data-question="q6"
+            data-answer="A"
+            onclick="selectAnswer(this)"
+          >
+            <strong>A</strong>
+            古代航海與貿易歷史
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q6"
+            data-answer="B"
+            onclick="selectAnswer(this)"
+          >
+            <strong>B</strong>
+            未來天氣預報
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q6"
+            data-answer="C"
+            onclick="selectAnswer(this)"
+          >
+            <strong>C</strong>
+            太空探索
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q6"
+            data-answer="D"
+            onclick="selectAnswer(this)"
+          >
+            <strong>D</strong>
+            火山形成原因
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        class="choice-card"
+        id="box-q7"
+      >
+
+        <p>
+          3. 博卡喇號（S.S. Bokhara）沉船地點在哪裡？
+        </p>
+
+
+        <div class="choice-group">
+
+          <button
+            class="answer-button choice-button"
+            data-question="q7"
+            data-answer="A"
+            onclick="selectAnswer(this)"
+          >
+            <strong>A</strong>
+            將軍嶼
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q7"
+            data-answer="B"
+            onclick="selectAnswer(this)"
+          >
+            <strong>B</strong>
+            基隆嶼
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q7"
+            data-answer="C"
+            onclick="selectAnswer(this)"
+          >
+            <strong>C</strong>
+            姑婆嶼
+          </button>
+
+
+          <button
+            class="answer-button choice-button"
+            data-question="q7"
+            data-answer="D"
+            onclick="selectAnswer(this)"
+          >
+            <strong>D</strong>
+            綠島
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <h2 class="section-title">
+      03｜我的發現
+    </h2>
+
+
+    <div class="discovery-layout">
+
+
+      <div class="character-area">
+
+        <img
+          src="./images/character.png"
+          class="character"
+          alt="水下考古員"
+        >
+
+      </div>
+
+
+      <div class="discovery-box">
+
+
+        <div class="discovery-title">
+
+          我的發現
+
+          <span>
+            ｜今天你學到最印象深刻的是什麼？一起寫下來吧！
+          </span>
+
+        </div>
+
+
+        <textarea
+          id="discoveryInput"
+          placeholder="點這裡開始輸入……"
+        ></textarea>
+
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="finish-area">
+
+      <button
+        class="finish-button"
+        onclick="checkAnswers()"
+      >
+        完成考古任務
+      </button>
+
+
+      <div id="message"></div>
+
+    </div>
+
+
+
+    <div id="result">
+
+      <h2>
+        考古任務完成！
+      </h2>
+
+
+      <div
+        class="score"
+        id="score"
+      ></div>
+
+
+      <div id="answer-details"></div>
+
+
+      <button
+        class="reset-button"
+        onclick="resetQuiz()"
+      >
+        下一位考古員
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+
+  <script>
+
+    const userAnswers = {};
+
+
+    const correctAnswers = {
+
+      q1: "O",
+
+      q2: "O",
+
+      q3: "X",
+
+      q4: "O",
+
+      q5: "B",
+
+      q6: "A",
+
+      q7: "C"
+
+    };
+
+
+    const questionTexts = {
+
+      q1:
+        "參觀博卡喇號展覽可以幫助我們認識臺灣的海洋文化與歷史。",
+
+      q2:
+        "水下考古需要潛水、測量、拍照等專業技術。",
+
+      q3:
+        "看到海底文物時，可以自行撿拾帶回家紀念。",
+
+      q4:
+        "水下文化資產具有歷史、文化或考古價值，因此需要妥善保存。",
+
+      q5:
+        "發現沉船遺址時，考古人員通常會先做什麼？",
+
+      q6:
+        "水下文化資產可以幫助我們了解什麼？",
+
+      q7:
+        "博卡喇號（S.S. Bokhara）沉船地點在哪裡？"
+
+    };
+
+
+    const correctAnswerTexts = {
+
+      q1: "O",
+
+      q2: "O",
+
+      q3: "X",
+
+      q4: "O",
+
+      q5:
+        "B｜調查、測量與記錄現場",
+
+      q6:
+        "A｜古代航海與貿易歷史",
+
+      q7:
+        "C｜姑婆嶼"
+
+    };
+
+
+    function selectAnswer(button) {
+
+      const question =
+        button.dataset.question;
+
+
+      const answer =
+        button.dataset.answer;
+
+
+      userAnswers[question] =
+        answer;
+
+
+      const questionBox =
+        button.closest(
+          ".tf-question, .choice-card"
+        );
+
+
+      const buttons =
+        questionBox.querySelectorAll(
+          ".answer-button"
+        );
+
+
+      buttons.forEach(
+        function(btn) {
+
+          btn.classList.remove(
+            "selected"
+          );
+
+        }
+      );
+
+
+      button.classList.add(
+        "selected"
+      );
+
+
+      questionBox.classList.remove(
+        "unanswered"
+      );
+
+
+      document.getElementById(
+        "message"
+      ).innerText =
+        "";
+
+    }
+
+
+
+    function checkAnswers() {
+
+      const questionKeys =
+        Object.keys(
+          correctAnswers
+        );
+
+
+      let unansweredCount =
+        0;
+
+
+      questionKeys.forEach(
+        function(question) {
+
+          const box =
+            document.getElementById(
+              "box-" + question
+            );
+
+
+          if (
+            !userAnswers[
+              question
+            ]
+          ) {
+
+            unansweredCount++;
+
+
+            box.classList.add(
+              "unanswered"
+            );
+
+          }
+
+          else {
+
+            box.classList.remove(
+              "unanswered"
+            );
+
+          }
+
+        }
+      );
+
+
+
+      if (
+        unansweredCount > 0
+      ) {
+
+        document.getElementById(
+          "message"
+        ).innerText =
+
+          "還有 " +
+          unansweredCount +
+          " 題沒有完成喔！";
+
+
+        return;
+
+      }
+
+
+
+      let score =
+        0;
+
+
+      questionKeys.forEach(
+        function(question) {
+
+          if (
+            userAnswers[
+              question
+            ]
+            ===
+            correctAnswers[
+              question
+            ]
+          ) {
+
+            score++;
+
+          }
+
+        }
+      );
+
+
+
+      document.getElementById(
+        "score"
+      ).innerText =
+
+        "你答對了 " +
+        score +
+        " / " +
+        questionKeys.length +
+        " 題";
+
+
+
+      let detailHTML =
+        "";
+
+
+      questionKeys.forEach(
+
+        function(
+          question,
+          index
+        ) {
+
+          const userAnswer =
+            userAnswers[
+              question
+            ];
+
+
+          const correctAnswer =
+            correctAnswers[
+              question
+            ];
+
+
+          const isCorrect =
+            userAnswer
+            ===
+            correctAnswer;
+
+
+
+          detailHTML += `
+
+            <div class="result-item">
+
+              <strong>
+                第 ${index + 1} 題
+              </strong>
+
+              <p>
+                ${questionTexts[question]}
+              </p>
+
+              ${
+                isCorrect
+
+                ?
+
+                `
+                  <p class="correct">
+                    ✓ 回答正確
+                  </p>
+                `
+
+                :
+
+                `
+                  <p class="wrong">
+                    ✕ 回答錯誤
+                  </p>
+
+                  <p>
+                    你的答案：
+                    ${convertAnswer(
+                      question,
+                      userAnswer
+                    )}
+                  </p>
+
+                  <p>
+                    正確答案：
+                    ${correctAnswerTexts[
+                      question
+                    ]}
+                  </p>
+                `
+              }
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+
+      document.getElementById(
+        "answer-details"
+      ).innerHTML =
+        detailHTML;
+
+
+
+      document.getElementById(
+        "result"
+      ).style.display =
+        "block";
+
+
+
+      document.getElementById(
+        "result"
+      ).scrollIntoView({
+
+        behavior:
+          "smooth",
+
+        block:
+          "start"
+
+      });
+
+    }
+
+
+
+    function convertAnswer(
+      question,
+      answer
+    ) {
+
+
+      if (
+        answer === "O"
+      ) {
+
+        return "O";
+
+      }
+
+
+      if (
+        answer === "X"
+      ) {
+
+        return "X";
+
+      }
+
+
+
+      if (
+        question === "q5"
+      ) {
+
+        const choices = {
+
+          A:
+            "A｜立即全部打撈",
+
+          B:
+            "B｜調查、測量與記錄現場",
+
+          C:
+            "C｜將文物帶回家研究",
+
+          D:
+            "D｜封閉整片海域"
+
+        };
+
+
+        return choices[
+          answer
+        ];
+
+      }
+
+
+
+      if (
+        question === "q6"
+      ) {
+
+        const choices = {
+
+          A:
+            "A｜古代航海與貿易歷史",
+
+          B:
+            "B｜未來天氣預報",
+
+          C:
+            "C｜太空探索",
+
+          D:
+            "D｜火山形成原因"
+
+        };
+
+
+        return choices[
+          answer
+        ];
+
+      }
+
+
+
+      if (
+        question === "q7"
+      ) {
+
+        const choices = {
+
+          A:
+            "A｜將軍嶼",
+
+          B:
+            "B｜基隆嶼",
+
+          C:
+            "C｜姑婆嶼",
+
+          D:
+            "D｜綠島"
+
+        };
+
+
+        return choices[
+          answer
+        ];
+
+      }
+
+
+      return "";
+
+    }
+
+
+
+    function resetQuiz() {
+
+
+      for (
+        let key
+        in userAnswers
+      ) {
+
+        delete userAnswers[
+          key
+        ];
+
+      }
+
+
+
+      const buttons =
+        document.querySelectorAll(
+          ".answer-button"
+        );
+
+
+      buttons.forEach(
+        function(button) {
+
+          button.classList.remove(
+            "selected"
+          );
+
+        }
+      );
+
+
+
+      const questions =
+        document.querySelectorAll(
+          ".tf-question, .choice-card"
+        );
+
+
+      questions.forEach(
+        function(question) {
+
+          question.classList.remove(
+            "unanswered"
+          );
+
+        }
+      );
+
+
+
+      document.getElementById(
+        "result"
+      ).style.display =
+        "none";
+
+
+
+      document.getElementById(
+        "message"
+      ).innerText =
+        "";
+
+
+
+      document.getElementById(
+        "discoveryInput"
+      ).value =
+        "";
+
+
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
